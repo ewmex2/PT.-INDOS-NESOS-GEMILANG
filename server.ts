@@ -65,6 +65,25 @@ async function startServer() {
         return res.status(400).json({ error: "Pesan pertanyaan tidak boleh kosong" });
       }
 
+      if (!process.env.GEMINI_API_KEY) {
+        // Smart fallback when no GEMINI_API_KEY is configured
+        const lower = message.toLowerCase();
+        let fallbackReply = "Terima kasih telah menghubungi PT. INDOS NESOS GEMILANG (ING). Kami adalah konsultan terpercaya untuk Studi Kelayakan (FS), Penataan Aset (SIMA/GIS), DPPT, dan Standarisasi Biaya (SSH/ASB). Untuk konsultasi lebih lanjut, silakan hubungi kami di 0812-7000-840 / 0812-7023-456 atau email indosnesosgemilang@gmail.com.";
+        
+        if (lower.includes("layanan") || lower.includes("jasa") || lower.includes("produk")) {
+          fallbackReply = "PT. INDOS NESOS GEMILANG menyediakan 7 layanan utama: 1. Studi Kelayakan (Feasibility Study), 2. SIMA/SIMBADA & GIS Spasial, 3. Dokumen Perencanaan Pengadaan Tanah (DPPT), 4. Standarisasi Satuan Harga (SSH/HSPK/ASB), 5. Buku Profil Daerah, 6. Analisa Standar Belanja (ASB), 7. Personal Investigation Report (PIR).";
+        } else if (lower.includes("lokasi") || lower.includes("alamat") || lower.includes("kantor") || lower.includes("kontak")) {
+          fallbackReply = "Kantor Utama kami berlokasi di Komplek Orchid Park Blok C No. 49, Batam Kota, Kota Batam, Kepulauan Riau (Telp: 0812-7000-840 / 0812-7023-456). Kantor Jakarta berada di Gedung ASCOM Lt. 3, Jl. Matraman Raya No. 67, Tebet, Jakarta Selatan.";
+        } else if (lower.includes("dppt") || lower.includes("tanah") || lower.includes("lahan")) {
+          fallbackReply = "Penyusunan Dokumen Perencanaan Pengadaan Tanah (DPPT) oleh PT. ING berlandaskan UU No. 2/2012, UU Cipta Kerja No. 11/2020, PP No. 19/2021, dan Permen ATR/BPN No. 19/2021. Pengalaman kami mencakup Flyover Ramayana, Jembatan Batam-Bintan, hingga Bandara RHA Karimun.";
+        }
+
+        return res.json({
+          reply: fallbackReply,
+          model: 'ing-knowledge-base'
+        });
+      }
+
       const ai = getGeminiClient();
 
       // Build context from history if available
