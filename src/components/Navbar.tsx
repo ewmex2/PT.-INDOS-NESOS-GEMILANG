@@ -38,7 +38,7 @@ export default function Navbar() {
           </a>
 
           {/* Desktop Menu */}
-          <div className="hidden xl:flex items-center space-x-6">
+          <div className="hidden xl:flex items-center space-x-7">
             {links.map((link) => (
               <a 
                 key={link.name} 
@@ -48,24 +48,12 @@ export default function Navbar() {
                 {link.name}
               </a>
             ))}
-            <Link 
-              to="/login"
-              className="inline-flex items-center bg-neutral-900 text-white text-xs font-bold px-4 py-2.5 rounded-lg hover:bg-red-600 transition shadow-sm"
-            >
-              <ShieldCheck className="h-4 w-4 mr-1.5" />
-              Admin Panel
-            </Link>
           </div>
 
-          {/* Mobile / Tablet Hamburger Button */}
+          {/* Mobile / Tablet Hamburger Button Only */}
           <div className="xl:hidden flex items-center">
-            <Link 
-              to="/login"
-              className="mr-2 inline-flex items-center bg-neutral-900 text-white text-xs font-semibold px-3 py-1.5 rounded-lg hover:bg-red-600 transition"
-            >
-              Admin
-            </Link>
             <button 
+              id="hamburger-nav-toggle-btn"
               onClick={() => setIsOpen(!isOpen)}
               className="text-neutral-700 hover:text-red-600 focus:outline-none p-2 rounded-lg hover:bg-neutral-100 transition"
               aria-label="Toggle navigation menu"
