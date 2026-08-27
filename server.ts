@@ -258,8 +258,7 @@ INSTRUKSI KHUSUS:
           sources: sources.length > 0 ? sources : undefined,
           model: 'gemini-3.7-flash'
         });
-      } catch (geminiCallErr: any) {
-        console.warn("Gemini API call failed or quota exceeded (429), serving seamless fallback reply:", geminiCallErr?.message);
+      } catch (_geminiCallErr: any) {
         // Seamless fallback so the user always gets a rich, accurate response even when rate limited / quota exhausted
         const localResult = getLocalSmartReply();
         return res.json(localResult);
