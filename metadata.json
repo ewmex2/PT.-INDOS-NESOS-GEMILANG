@@ -1,0 +1,8 @@
+{
+  "name": "PT. INDOS NESOS GEMILANG",
+  "description": "Asset Management Consultant",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

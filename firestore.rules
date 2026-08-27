@@ -1,0 +1,14 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Settings and website content for company profile
+    match /settings/{settingId} {
+      allow read, write: if true;
+    }
+
+    // Global default fallback
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

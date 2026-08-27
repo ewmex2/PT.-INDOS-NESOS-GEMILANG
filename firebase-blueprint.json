@@ -1,0 +1,49 @@
+{
+  "entities": {
+    "WebsiteContent": {
+      "title": "WebsiteContent",
+      "description": "Company profile website content and customizable settings",
+      "type": "object",
+      "properties": {
+        "hero": {
+          "type": "object",
+          "description": "Hero section content"
+        },
+        "about": {
+          "type": "object",
+          "description": "About section content and legal deeds history"
+        },
+        "services": {
+          "type": "object",
+          "description": "Services and project experience list"
+        },
+        "portfolio": {
+          "type": "object",
+          "description": "Portfolio documents and GIS mapping items"
+        },
+        "documentation": {
+          "type": "object",
+          "description": "Documentation activities and field photos"
+        },
+        "team": {
+          "type": "object",
+          "description": "Team members and advisory experts"
+        },
+        "clients": {
+          "type": "object",
+          "description": "Partner bank list"
+        },
+        "contacts": {
+          "type": "object",
+          "description": "Office locations, phones, and emails"
+        }
+      }
+    }
+  },
+  "firestore": {
+    "/settings/{settingId}": {
+      "schema": "WebsiteContent",
+      "description": "Public company profile configuration and content"
+    }
+  }
+}
